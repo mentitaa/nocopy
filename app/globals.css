@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+
+/* ─── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: #080808;
+  color: #f0ede6;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #080808; }
+::-webkit-scrollbar-thumb { background: #2e2e2e; border-radius: 2px; }
+
+/* ─── Scroll-reveal base state ───────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }
+
+/* Scale-reveal variant */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94) translateY(20px);
+  transition: opacity 1s cubic-bezier(0.16,1,0.3,1),
+              transform 1s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Clip-reveal for big headings (wipe up) */
+.reveal-clip {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-clip.visible {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* ─── Ticker / Marquee ───────────────────────────────────── */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Noise grain overlay ────────────────────────────────── */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ─── Gold gradient text ─────────────────────────────────── */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 50%, #c9a84c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Horizontal rule ────────────────────────────────────── */
+.hr-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a84c 30%, #c9a84c 70%, transparent);
+}
+
+/* ─── Win-rate bar ───────────────────────────────────────── */
+.wr-bar {
+  height: 2px;
+  background: #2e2e2e;
+  position: relative;
+  overflow: hidden;
+}
+.wr-bar-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ─── Rank glow ──────────────────────────────────────────── */
+.rank-1-glow { text-shadow: 0 0 20px rgba(201,168,76,0.8); }
+.rank-2-glow { text-shadow: 0 0 16px rgba(180,180,200,0.7); }
+.rank-3-glow { text-shadow: 0 0 14px rgba(180,110,50,0.7); }
+
+/* ─── Row hover ──────────────────────────────────────────── */
+.trader-row {
+  transition: background 0.15s ease;
+  cursor: pointer;
+}
+.trader-row:hover {
+  background: rgba(201,168,76,0.04);
+}
+
+/* ─── Live indicator ─────────────────────────────────────── */
+.live-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: livePulse 1.8s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%,100% { box-shadow: 0 0 0 0   rgba(74,222,128,0.6); }
+  50%      { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+}
+
+/* ─── Number counter ─────────────────────────────────────── */
+.counter-value {
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ─── Skeleton shimmer ───────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 4px;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Backdrop sections ──────────────────────────────────── */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 50%, rgba(201,168,76,0.05) 0%, transparent 50%),
+    #080808;
+}
+
+.section-alt { background: #0e0e0e; }
+
+/* ─── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hide-sm { display: none !important; }
+}
