@@ -3,7 +3,7 @@ import { Trader, fmtUSD, fmtPct, shortAddr } from '@/lib/polymarket';
 import clsx from 'clsx';
 
 const MEDALS = ['🥇', '🥈', '🥉'];
-const RANK_GLOWS = ['rank-1-glow text-gold', 'rank-2-glow text-mist', 'rank-3-glow text-[#cd7f32]'];
+const RANK_GLOWS = ['rank-1-glow text-yellow-500', 'rank-2-glow text-gray-400', 'rank-3-glow text-amber-600'];
 const AVATAR_COLORS = [
   'from-yellow-500 to-amber-700',
   'from-slate-400 to-slate-600',
@@ -50,7 +50,7 @@ export default function TraderRow({ trader, index }: Props) {
   return (
     <tr
       className={clsx(
-        'trader-row border-b border-[#141414]',
+        'trader-row border-b border-gray-100',
         'reveal',
         index < 5 ? `reveal-delay-${Math.min(index + 1, 4)}` : '',
       )}
@@ -67,7 +67,7 @@ export default function TraderRow({ trader, index }: Props) {
             {MEDALS[trader.rank - 1]}
           </span>
         ) : (
-          <span className="text-ash font-mono text-sm">#{trader.rank}</span>
+          <span className="text-gray-400 font-mono text-sm">#{trader.rank}</span>
         )}
       </td>
 
@@ -76,8 +76,8 @@ export default function TraderRow({ trader, index }: Props) {
         <div className="flex items-center gap-3">
           <Avatar trader={trader} />
           <div>
-            <p className="text-paper font-medium text-sm leading-tight">{trader.name}</p>
-            <p className="text-ash text-xs font-mono mt-0.5">
+            <p className="text-gray-900 font-medium text-sm leading-tight">{trader.name}</p>
+            <p className="text-gray-400 text-xs font-mono mt-0.5">
               {trader.address ? shortAddr(trader.address) : `@${trader.username}`}
             </p>
           </div>
@@ -89,13 +89,13 @@ export default function TraderRow({ trader, index }: Props) {
         <p
           className={clsx(
             'font-mono font-semibold text-sm',
-            trader.profit >= 0 ? 'text-up' : 'text-down',
+            trader.profit >= 0 ? 'text-green-500' : 'text-red-400',
           )}
         >
           {trader.profit >= 0 ? '+' : ''}{fmtUSD(trader.profit)}
         </p>
         {trader.profitPct !== 0 && (
-          <p className={clsx('text-xs font-mono', trader.profitPct >= 0 ? 'text-up/60' : 'text-down/60')}>
+          <p className={clsx('text-xs font-mono', trader.profitPct >= 0 ? 'text-green-500/60' : 'text-red-400/60')}>
             {fmtPct(trader.profitPct)}
           </p>
         )}
@@ -106,7 +106,7 @@ export default function TraderRow({ trader, index }: Props) {
         <span
           className={clsx(
             'font-mono text-sm font-semibold',
-            trader.roi >= 0 ? 'text-up' : 'text-down',
+            trader.roi >= 0 ? 'text-green-500' : 'text-red-400',
           )}
         >
           {fmtPct(trader.roi)}
@@ -122,7 +122,7 @@ export default function TraderRow({ trader, index }: Props) {
               style={{ width: `${Math.min(trader.winRate, 100)}%` }}
             />
           </div>
-          <span className="text-mist text-xs font-mono w-9 text-right">
+          <span className="text-gray-600 text-xs font-mono w-9 text-right">
             {trader.winRate.toFixed(0)}%
           </span>
         </div>
@@ -130,12 +130,12 @@ export default function TraderRow({ trader, index }: Props) {
 
       {/* Volume */}
       <td className="py-4 px-3 hide-sm">
-        <span className="text-mist font-mono text-sm">{fmtUSD(trader.volume)}</span>
+        <span className="text-gray-600 font-mono text-sm">{fmtUSD(trader.volume)}</span>
       </td>
 
       {/* Markets */}
       <td className="py-4 px-3 pr-6 hide-sm">
-        <span className="text-ash text-sm">{trader.marketsTraded}</span>
+        <span className="text-gray-400 text-sm">{trader.marketsTraded}</span>
       </td>
     </tr>
   );

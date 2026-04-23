@@ -23,18 +23,18 @@ function BigStat({
   const ref = useReveal<HTMLDivElement>(0.2);
   return (
     <div ref={ref} className="reveal reveal-delay-1">
-      <p className="text-ash text-xs font-mono uppercase tracking-[0.2em] mb-3">{label}</p>
+      <p className="text-gray-400 text-xs font-mono uppercase tracking-[0.2em] mb-3">{label}</p>
       <p
         className="font-display font-bold"
         style={{
           fontSize: 'clamp(2.4rem, 5vw, 4.5rem)',
           lineHeight: 0.95,
-          color: color ?? '#f0ede6',
+          color: color ?? '#0a0a0a',
         }}
       >
         {value}
       </p>
-      {sub && <p className="text-ash text-sm mt-2">{sub}</p>}
+      {sub && <p className="text-gray-400 text-sm mt-2">{sub}</p>}
     </div>
   );
 }
@@ -59,18 +59,18 @@ function CounterStat({
 
   return (
     <div ref={ref} className="reveal">
-      <p className="text-ash text-xs font-mono uppercase tracking-[0.2em] mb-3">{label}</p>
+      <p className="text-gray-400 text-xs font-mono uppercase tracking-[0.2em] mb-3">{label}</p>
       <p
         className="font-display font-bold counter-value"
         style={{
           fontSize: 'clamp(2.4rem, 5vw, 4.5rem)',
           lineHeight: 0.95,
-          color: color ?? '#f0ede6',
+          color: color ?? '#0a0a0a',
         }}
       >
         {format(counted)}
       </p>
-      {sub && <p className="text-ash text-sm mt-2">{sub}</p>}
+      {sub && <p className="text-gray-400 text-sm mt-2">{sub}</p>}
     </div>
   );
 }
@@ -90,7 +90,7 @@ export default function HeroStats({ traders, loading }: Props) {
         rawValue={topProfit}
         format={(v) => fmtUSD(v)}
         sub={traders[0]?.name ?? '—'}
-        color="#c9a84c"
+        color="#0ea5e9"
         active={active}
       />
       <CounterStat
@@ -105,7 +105,7 @@ export default function HeroStats({ traders, loading }: Props) {
         rawValue={avgROI}
         format={(v) => fmtPct(v)}
         sub="top 50 traders"
-        color={avgROI >= 0 ? '#4ade80' : '#f87171'}
+        color={avgROI >= 0 ? '#22c55e' : '#ef4444'}
         active={active}
       />
       <CounterStat

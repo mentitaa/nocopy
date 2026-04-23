@@ -4,11 +4,11 @@ import { useRevealChildren } from '@/app/hooks/useReveal';
 import TraderRow from './TraderRow';
 import clsx from 'clsx';
 
-const COL = 'py-3 text-xs font-mono uppercase tracking-[0.15em] text-ash text-left';
+const COL = 'py-3 text-xs font-mono uppercase tracking-[0.15em] text-gray-400 text-left';
 
 function SkeletonRow({ i }: { i: number }) {
   return (
-    <tr className="border-b border-[#141414]" style={{ opacity: 1 - i * 0.07 }}>
+    <tr className="border-b border-gray-100" style={{ opacity: 1 - i * 0.07 }}>
       <td className="py-4 pl-6 pr-3"><div className="skeleton h-4 w-6" /></td>
       <td className="py-4 px-3">
         <div className="flex items-center gap-3">
@@ -40,12 +40,12 @@ export default function LeaderboardTable({
   return (
     <div
       ref={tableRef}
-      className="overflow-hidden rounded-2xl border border-[#1a1a1a] bg-[#0b0b0b]"
+      className="overflow-hidden rounded-2xl border border-gray-100 bg-white"
     >
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-[#1a1a1a] bg-[#0e0e0e]">
+            <tr className="border-b border-gray-100 bg-gray-50">
               <th className={clsx(COL, 'pl-6 pr-3 w-16')}>Rk</th>
               <th className={clsx(COL, 'px-3')}>Trader</th>
               <th className={clsx(COL, 'px-3')}>P&L</th>
@@ -65,8 +65,8 @@ export default function LeaderboardTable({
 
       {!loading && traders.length === 0 && (
         <div className="text-center py-24">
-          <p className="text-ash text-lg">Sin datos disponibles</p>
-          <p className="text-ash/50 text-sm mt-2">Intenta otro período de tiempo</p>
+          <p className="text-gray-400 text-lg">Sin datos disponibles</p>
+          <p className="text-gray-400/50 text-sm mt-2">Intenta otro período de tiempo</p>
         </div>
       )}
     </div>

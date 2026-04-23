@@ -17,11 +17,10 @@ export default function Ticker({ traders, loading }: Props) {
     ? PLACEHOLDERS.map((p) => ({ name: p.name, profit: p.profit, rank: 0 }))
     : traders.slice(0, 10);
 
-  // Duplicate for seamless loop
   const doubled = [...items, ...items];
 
   return (
-    <div className="overflow-hidden border-t border-b border-[#1a1a1a] py-3 bg-[#0b0b0b]">
+    <div className="overflow-hidden border-t border-b border-gray-200 py-3 bg-gray-50">
       <div className="ticker-track">
         {doubled.map((t, i) => (
           <span
@@ -31,33 +30,32 @@ export default function Ticker({ traders, loading }: Props) {
               loading && 'opacity-30',
             )}
           >
-            {/* rank dot */}
             {!loading && (
               <span
                 className={clsx(
                   'text-xs font-body',
-                  i % doubled.length < 3 ? 'text-gold' : 'text-ash',
+                  i % doubled.length < 3 ? 'text-sky-500' : 'text-gray-400',
                 )}
               >
                 #{(i % items.length) + 1}
               </span>
             )}
-            <span className="text-paper/80 tracking-wide">
+            <span className="text-gray-600 tracking-wide">
               {'name' in t ? (t as { name: string }).name : ''}
             </span>
             <span
               className={clsx(
                 'font-semibold',
                 !loading && (t as Trader).profit >= 0
-                  ? 'text-up'
-                  : 'text-down',
+                  ? 'text-green-500'
+                  : 'text-red-400',
               )}
             >
               {loading
                 ? '——'
                 : fmtUSD((t as Trader).profit)}
             </span>
-            <span className="text-[#2e2e2e] text-xs">◆</span>
+            <span className="text-gray-200 text-xs">◆</span>
           </span>
         ))}
       </div>
