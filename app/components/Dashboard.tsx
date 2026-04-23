@@ -112,13 +112,13 @@ export default function Dashboard() {
                   className="font-display font-bold text-black leading-none"
                   style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', letterSpacing: '-0.03em' }}
                 >
-                  NoCopy😉
+                  NoCopy😉 →
                 </h1>
                 <h1
                   className="font-display font-bold leading-none"
                   style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', letterSpacing: '-0.03em', color: '#0ea5e9' }}
                 >
-                  → Best traders
+                  Best traders
                 </h1>
                 <h1
                   className="font-display font-bold text-black leading-none"
