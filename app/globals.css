@@ -117,3 +117,8 @@ body {
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
 
 @media (max-width: 768px) { .hide-sm { display: none !important; } }
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
