@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Period, Trader, PERIOD_LABELS } from '@/lib/polymarket';
+import clsx from 'clsx';
 import { useReveal } from '@/app/hooks/useReveal';
 import PeriodTabs from './PeriodTabs';
 import LeaderboardTable from './LeaderboardTable';
@@ -61,13 +62,14 @@ export default function Dashboard() {
   const [error, setError] = useState<string | null>(null);
   const [updatedAt, setUpdatedAt] = useState('');
   const [countdown, setCountdown] = useState(REFRESH / 1000);
+  const [limit, setLimit] = useState(15);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const load = useCallback(async (p: Period) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/leaderboard?period=${p}&limit=50`);
+      const res = await fetch(`/api/leaderboard?period=${p}&limit=${limit}`);
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
       setTraders(data.traders ?? []);
@@ -82,6 +84,7 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => { load(period); }, [period, load]);
+  useEffect(() => { load(period); }, [limit, load]);
 
   useEffect(() => {
     timerRef.current = setInterval(() => load(period), REFRESH);
@@ -170,6 +173,24 @@ export default function Dashboard() {
             className="reveal flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8"
           >
             <PeriodTabs active={period} onChange={setPeriod} disabled={loading} />
+            <div className="flex items-center gap-2 border border-gray-200 rounded-full p-1">
+              <button
+                onClick={() => setLimit(15)}
+                className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all',
+                  limit === 15 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700'
+                )}
+              >
+                Top 15
+              </button>
+              <button
+                onClick={() => setLimit(30)}
+                className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all',
+                  limit === 30 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700'
+                )}
+              >
+                Top 30
+              </button>
+            </div>
             <div className="flex items-center gap-3 text-xs font-mono text-gray-400">
               {updatedAt && (
                 <span>
