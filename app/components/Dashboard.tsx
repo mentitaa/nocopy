@@ -108,16 +108,22 @@ export default function Dashboard() {
             {/* Left: text card */}
             <div>
               <div ref={heroRef} className="reveal card-border p-10 mb-6">
-                <h1 className="font-display font-bold text-black leading-none mb-4"
-                  style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.03em' }}>
+                <h1
+                  className="font-display font-bold text-black leading-none"
+                  style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', letterSpacing: '-0.03em' }}
+                >
                   NoCopy😉
                 </h1>
-                <h1 className="font-display font-bold leading-none mb-4 reveal reveal-delay-1"
-                  style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.03em', color: '#0ea5e9' }}>
+                <h1
+                  className="font-display font-bold leading-none"
+                  style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', letterSpacing: '-0.03em', color: '#0ea5e9' }}
+                >
                   → Best traders
                 </h1>
-                <h1 className="font-display font-bold text-black leading-none reveal reveal-delay-2"
-                  style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.03em' }}>
+                <h1
+                  className="font-display font-bold text-black leading-none"
+                  style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', letterSpacing: '-0.03em' }}
+                >
                   in real time.
                 </h1>
               </div>
