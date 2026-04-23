@@ -101,7 +101,7 @@ export default function Dashboard() {
       <Navbar countdown={countdown} onRefresh={() => load(period)} loading={loading} />
 
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="grid-bg pt-28 pb-0 min-h-screen flex items-center">
+      <section className="grid-bg flex items-center" style={{ height: 'calc(100vh - 56px)', paddingTop: '56px' }}>
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
 
