@@ -168,48 +168,22 @@ export default function Dashboard() {
           />
 
           {/* Controls */}
-          <div
-            ref={tableRef}
-            className="reveal flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8"
-          >
+          <div ref={tableRef} className="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <PeriodTabs active={period} onChange={setPeriod} disabled={loading} />
-            <div className="flex items-center gap-2 border border-gray-200 rounded-full p-1">
-              <button
-                onClick={() => setLimit(15)}
-                className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all',
-                  limit === 15 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700'
-                )}
-              >
-                Top 15
-              </button>
-              <button
-                onClick={() => setLimit(30)}
-                className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all',
-                  limit === 30 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700'
-                )}
-              >
-                Top 30
-              </button>
-            </div>
-            <div className="flex items-center gap-3 text-xs font-mono text-gray-400">
+            <div className="flex flex-col items-end gap-2">
               {updatedAt && (
-                <span>
-                  Actualizado{' '}
-                  {new Date(updatedAt).toLocaleTimeString('es-PE', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                  })}
+                <span className="text-xs font-mono text-gray-400">
+                  Actualizado {new Date(updatedAt).toLocaleTimeString('es-PE', {hour:'2-digit', minute:'2-digit', second:'2-digit'})}
                 </span>
               )}
-              {loading && (
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-3 h-3 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-                  </svg>
-                  Cargando...
-                </span>
-              )}
+              <div className="flex items-center gap-1 border border-gray-200 rounded-full p-1">
+                <button onClick={() => setLimit(15)} className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all', limit === 15 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700')}>
+                  Top 15
+                </button>
+                <button onClick={() => setLimit(30)} className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all', limit === 30 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700')}>
+                  Top 30
+                </button>
+              </div>
             </div>
           </div>
 
