@@ -76,8 +76,8 @@ export default function TraderRow({ trader, index }: Props) {
         <div className="flex items-center gap-3">
           <Avatar trader={trader} />
           <div>
-            <p className="text-gray-900 font-medium text-sm leading-tight">{trader.name}</p>
-            <p className="text-gray-400 text-xs font-mono mt-0.5">
+            <p className="font-medium text-sm leading-tight" style={{color:'#111827'}}>{trader.name}</p>
+            <p className="text-xs font-mono mt-0.5" style={{color:'#9ca3af'}}>
               {trader.address ? shortAddr(trader.address) : `@${trader.username}`}
             </p>
           </div>
