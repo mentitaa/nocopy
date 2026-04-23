@@ -7,58 +7,58 @@ interface Props {
   loading?: boolean;
 }
 
-const PLACEHOLDERS = Array.from({ length: 8 }, (_, i) => ({
-  name: `Trader ${i + 1}`,
-  profit: Math.random() * 100000,
-}));
-
 export default function Ticker({ traders, loading }: Props) {
   const items = loading
-    ? PLACEHOLDERS.map((p) => ({ name: p.name, profit: p.profit, rank: 0 }))
-    : traders.slice(0, 10);
+    ? Array.from({ length: 10 }, (_, i) => ({
+        rank: i + 1, name: `Trader ${i + 1}`, profit: 0, username: ''
+      }))
+    : traders.slice(0, 20);
 
-  const doubled = [...items, ...items];
+  if (items.length === 0) return null;
+
+  const content = [...items, ...items, ...items];
 
   return (
-    <div className="overflow-hidden border-t border-b border-gray-200 py-3 bg-gray-50">
-      <div className="ticker-track">
-        {doubled.map((t, i) => (
+    <div
+      className="border-t border-b border-gray-200 bg-gray-50 overflow-hidden"
+      style={{ height: '44px', display: 'flex', alignItems: 'center' }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          whiteSpace: 'nowrap',
+          animation: 'tickerMove 40s linear infinite',
+          willChange: 'transform',
+        }}
+      >
+        {content.map((t, i) => (
           <span
             key={i}
-            className={clsx(
-              'flex items-center gap-3 px-8 text-sm font-mono whitespace-nowrap',
-              loading && 'opacity-30',
-            )}
+            className="inline-flex items-center gap-2 px-6 text-sm font-mono"
           >
-            {!loading && (
-              <span
-                className={clsx(
-                  'text-xs font-body',
-                  i % doubled.length < 3 ? 'text-sky-500' : 'text-gray-400',
-                )}
-              >
-                #{(i % items.length) + 1}
-              </span>
-            )}
-            <span className="text-gray-600 tracking-wide">
-              {'name' in t ? (t as { name: string }).name : ''}
+            <span className="text-gray-400 text-xs">
+              #{(i % items.length) + 1}
             </span>
-            <span
-              className={clsx(
-                'font-semibold',
-                !loading && (t as Trader).profit >= 0
-                  ? 'text-green-500'
-                  : 'text-red-400',
-              )}
-            >
-              {loading
-                ? '——'
-                : fmtUSD((t as Trader).profit)}
+            <span className="text-gray-700">
+              {'name' in t ? (t as {name: string}).name : (t as Trader).username}
+            </span>
+            <span className={clsx(
+              'font-semibold',
+              !loading && (t as Trader).profit >= 0 ? 'text-green-500' : 'text-red-400'
+            )}>
+              {loading ? '——' : fmtUSD((t as Trader).profit)}
             </span>
             <span className="text-gray-200 text-xs">◆</span>
           </span>
         ))}
       </div>
+
+      <style jsx>{`
+        @keyframes tickerMove {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
+        }
+      `}</style>
     </div>
   );
 }
