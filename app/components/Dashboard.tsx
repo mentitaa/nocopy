@@ -16,7 +16,7 @@ function Navbar({ countdown, onRefresh, loading }: { countdown: number; onRefres
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/8 bg-white/80 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
         <a href="/" className="font-display font-bold text-xl tracking-tight text-black">
-          NOCOPY
+          NoCopy😉
         </a>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 text-gray-400 text-xs font-mono">
@@ -108,16 +108,13 @@ export default function Dashboard() {
             {/* Left: text card */}
             <div>
               <div ref={heroRef} className="reveal card-border p-10 mb-6">
-                <p className="text-sky-500 font-mono text-xs tracking-[0.3em] uppercase mb-6">
-                  Datos en tiempo real · Polymarket
-                </p>
-                <h1 className="font-display font-bold text-black leading-none mb-2"
+                <h1 className="font-display font-bold text-black leading-none mb-4"
                   style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.03em' }}>
-                  NoCopy
+                  NoCopy😉
                 </h1>
-                <h1 className="font-display font-bold leading-none mb-2 reveal reveal-delay-1"
+                <h1 className="font-display font-bold leading-none mb-4 reveal reveal-delay-1"
                   style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.03em', color: '#0ea5e9' }}>
-                  →Best traders
+                  → Best traders
                 </h1>
                 <h1 className="font-display font-bold text-black leading-none reveal reveal-delay-2"
                   style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', letterSpacing: '-0.03em' }}>
