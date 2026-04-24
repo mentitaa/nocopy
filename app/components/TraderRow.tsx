@@ -1,83 +1,48 @@
 'use client';
 import { Trader, fmtUSD, fmtPct, shortAddr } from '@/lib/polymarket';
-import clsx from 'clsx';
 
 const MEDALS = ['🥇', '🥈', '🥉'];
-const RANK_GLOWS = ['rank-1-glow text-yellow-500', 'rank-2-glow text-gray-400', 'rank-3-glow text-amber-600'];
 const AVATAR_COLORS = [
-  'from-yellow-500 to-amber-700',
-  'from-slate-400 to-slate-600',
-  'from-amber-600 to-orange-800',
-  'from-cyan-500 to-blue-700',
-  'from-purple-500 to-violet-700',
-  'from-emerald-500 to-teal-700',
-  'from-rose-500 to-pink-700',
-  'from-indigo-500 to-blue-700',
+  ['#f59e0b','#b45309'],['#94a3b8','#475569'],['#f97316','#c2410c'],
+  ['#06b6d4','#0e7490'],['#8b5cf6','#6d28d9'],['#10b981','#065f46'],
+  ['#f43f5e','#be123c'],['#6366f1','#4338ca'],
 ];
 
-function Avatar({ trader }: { trader: Trader }) {
-  const grad = AVATAR_COLORS[(trader.rank - 1) % AVATAR_COLORS.length];
-  return (
-    <div
-      className={clsx(
-        'w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold',
-        'bg-gradient-to-br text-white',
-        grad,
-      )}
-    >
-      {trader.profileImage ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={trader.profileImage}
-          alt={trader.username}
-          className="w-9 h-9 rounded-full object-cover"
-        />
-      ) : (
-        trader.username.slice(0, 2).toUpperCase()
-      )}
-    </div>
-  );
-}
-
-interface Props {
-  trader: Trader;
-  index: number;
-}
-
-export default function TraderRow({ trader, index }: Props) {
+export default function TraderRow({ trader, index }: { trader: Trader; index: number }) {
   const isTop3 = trader.rank <= 3;
+  const [from, to] = AVATAR_COLORS[(trader.rank - 1) % AVATAR_COLORS.length];
 
   return (
     <tr
-      className={clsx(
-        'trader-row border-b border-gray-100',
-        'reveal',
-        index < 5 ? `reveal-delay-${Math.min(index + 1, 4)}` : '',
-      )}
-      style={index >= 5 ? { transitionDelay: `${Math.min(index * 0.04, 0.5)}s` } : undefined}
-      onClick={() =>
-        trader.address &&
-        window.open(`https://polymarket.com/profile/${trader.address}`, '_blank')
-      }
+      onClick={() => trader.address && window.open(`https://polymarket.com/profile/${trader.address}`, '_blank')}
+      style={{ borderBottom: '1px solid #f3f4f6', cursor: 'pointer', transition: 'background 0.15s' }}
+      onMouseEnter={e => (e.currentTarget.style.background = '#f0f9ff')}
+      onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
     >
       {/* Rank */}
-      <td className="py-4 pl-6 pr-3 w-16">
-        {isTop3 ? (
-          <span className={clsx('text-xl', RANK_GLOWS[trader.rank - 1])}>
-            {MEDALS[trader.rank - 1]}
-          </span>
-        ) : (
-          <span className="text-gray-400 font-mono text-sm">#{trader.rank}</span>
-        )}
+      <td style={{ padding: '14px 12px 14px 24px', width: '56px' }}>
+        {isTop3
+          ? <span style={{ fontSize: '20px' }}>{MEDALS[trader.rank - 1]}</span>
+          : <span style={{ color: '#9ca3af', fontFamily: 'monospace', fontSize: '13px' }}>#{trader.rank}</span>
+        }
       </td>
 
       {/* Trader */}
-      <td className="py-4 px-3">
-        <div className="flex items-center gap-3">
-          <Avatar trader={trader} />
+      <td style={{ padding: '14px 12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{
+            width: '36px', height: '36px', borderRadius: '50%', flexShrink: 0,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: `linear-gradient(135deg, ${from}, ${to})`,
+            color: 'white', fontSize: '12px', fontWeight: 700,
+          }}>
+            {(trader.username || trader.name || '?').slice(0, 2).toUpperCase()}
+          </div>
           <div>
-            <p className="font-medium text-sm leading-tight" style={{color:'#111827'}}>{trader.name}</p>
-            <p className="text-xs font-mono mt-0.5" style={{color:'#9ca3af'}}>
+            <p style={{ color: '#111827', fontWeight: 600, fontSize: '14px', margin: 0, lineHeight: 1.3 }}>
+              {trader.name || trader.username}
+            </p>
+            <p style={{ color: '#9ca3af', fontSize: '11px', fontFamily: 'monospace', margin: 0 }}>
               {trader.address ? shortAddr(trader.address) : `@${trader.username}`}
             </p>
           </div>
@@ -85,57 +50,48 @@ export default function TraderRow({ trader, index }: Props) {
       </td>
 
       {/* P&L */}
-      <td className="py-4 px-3">
-        <p
-          className={clsx(
-            'font-mono font-semibold text-sm',
-            trader.profit >= 0 ? 'text-green-500' : 'text-red-400',
-          )}
-        >
+      <td style={{ padding: '14px 12px' }}>
+        <p style={{ color: trader.profit >= 0 ? '#22c55e' : '#f87171', fontFamily: 'monospace', fontWeight: 600, fontSize: '14px', margin: 0 }}>
           {trader.profit >= 0 ? '+' : ''}{fmtUSD(trader.profit)}
         </p>
         {trader.profitPct !== 0 && (
-          <p className={clsx('text-xs font-mono', trader.profitPct >= 0 ? 'text-green-500/60' : 'text-red-400/60')}>
+          <p style={{ color: trader.profitPct >= 0 ? '#86efac' : '#fca5a5', fontSize: '11px', fontFamily: 'monospace', margin: 0 }}>
             {fmtPct(trader.profitPct)}
           </p>
         )}
       </td>
 
       {/* ROI */}
-      <td className="py-4 px-3 hide-sm">
-        <span
-          className={clsx(
-            'font-mono text-sm font-semibold',
-            trader.roi >= 0 ? 'text-green-500' : 'text-red-400',
-          )}
-        >
+      <td className="hide-sm" style={{ padding: '14px 12px' }}>
+        <span style={{ color: trader.roi >= 0 ? '#22c55e' : '#f87171', fontFamily: 'monospace', fontSize: '13px', fontWeight: 600 }}>
           {fmtPct(trader.roi)}
         </span>
       </td>
 
-      {/* Win rate */}
-      <td className="py-4 px-3 hide-sm">
-        <div className="flex items-center gap-3 min-w-[100px]">
-          <div className="wr-bar flex-1">
-            <div
-              className="wr-bar-fill"
-              style={{ width: `${Math.min(trader.winRate, 100)}%` }}
-            />
+      {/* Win Rate */}
+      <td className="hide-sm" style={{ padding: '14px 12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ width: '64px', height: '3px', background: '#e5e7eb', borderRadius: '2px', overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${Math.min(trader.winRate, 100)}%`, background: 'linear-gradient(90deg, #22c55e, #38bdf8)', transition: 'width 1s ease' }} />
           </div>
-          <span className="text-gray-600 text-xs font-mono w-9 text-right">
+          <span style={{ color: '#6b7280', fontSize: '12px', fontFamily: 'monospace' }}>
             {trader.winRate.toFixed(0)}%
           </span>
         </div>
       </td>
 
       {/* Volume */}
-      <td className="py-4 px-3 hide-sm">
-        <span className="text-gray-600 font-mono text-sm">{fmtUSD(trader.volume)}</span>
+      <td className="hide-sm" style={{ padding: '14px 12px' }}>
+        <span style={{ color: '#374151', fontFamily: 'monospace', fontSize: '13px' }}>
+          {fmtUSD(trader.volume)}
+        </span>
       </td>
 
       {/* Markets */}
-      <td className="py-4 px-3 pr-6 hide-sm">
-        <span className="text-gray-400 text-sm">{trader.marketsTraded}</span>
+      <td className="hide-sm" style={{ padding: '14px 12px 14px 12px' }}>
+        <span style={{ color: '#9ca3af', fontSize: '13px' }}>
+          {trader.marketsTraded}
+        </span>
       </td>
     </tr>
   );
