@@ -59,7 +59,7 @@ export default function Charts({ traders, loading }: Props) {
 
         {/* RIGHT — Bar chart */}
         <div style={{ border: '1px solid #f1f5f9', borderRadius: '20px', padding: '24px', background: '#fff' }}>
-          <p style={{ fontFamily: 'monospace', fontSize: '10px', color: '#94a3b8', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '20px' }}>Posiciones #{top3.length + 1} — #{traders.length}</p>
+          <p style={{ fontFamily: 'monospace', fontSize: '10px', color: '#94a3b8', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '20px' }}>Positions #{top3.length + 1} — #{traders.length}</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {rest.map(t => {
               const pct = Math.max((t.profit / maxProfit) * 100, 3);

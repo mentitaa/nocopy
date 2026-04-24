@@ -21,9 +21,9 @@ export interface LeaderboardData {
 
 const PERIOD_DAYS: Record<Period, number> = { '1w': 7, '1m': 30, '3m': 90 };
 export const PERIOD_LABELS: Record<Period, string> = {
-  '1w': '7 días',
-  '1m': '1 mes',
-  '3m': '3 meses',
+  '1w': '7 days',
+  '1m': '1 month',
+  '3m': '3 months',
 };
 
 export async function fetchLeaderboard(period: Period, limit = 50): Promise<LeaderboardData> {

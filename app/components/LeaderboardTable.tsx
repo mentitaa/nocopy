@@ -46,7 +46,7 @@ export default function LeaderboardTable({
               <th className={clsx(COL, 'pl-6 pr-3 w-16')}>Rank</th>
               <th className={clsx(COL, 'px-3')}>Trader</th>
               <th className={clsx(COL, 'px-3')}>P&L</th>
-              <th className={clsx(COL, 'px-3 pr-6')}>Volumen</th>
+              <th className={clsx(COL, 'px-3 pr-6')}>Volume</th>
             </tr>
           </thead>
           <tbody>
@@ -59,8 +59,8 @@ export default function LeaderboardTable({
 
       {!loading && traders.length === 0 && (
         <div className="text-center py-24">
-          <p className="text-gray-400 text-lg">Sin datos disponibles</p>
-          <p className="text-gray-400/50 text-sm mt-2">Intenta otro período de tiempo</p>
+          <p className="text-gray-400 text-lg">No data available</p>
+          <p className="text-gray-400/50 text-sm mt-2">Try a different time period</p>
         </div>
       )}
     </div>
