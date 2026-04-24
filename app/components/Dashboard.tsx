@@ -294,9 +294,20 @@ export default function Dashboard() {
       {/* ── FOOTER ────────────────────────────────────────── */}
       <footer className="border-t border-gray-100 px-6 py-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-400 text-xs font-mono">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <a
+            href="https://www.instagram.com/mentita.studio/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+          >
             <span style={{ fontSize: '11px', color: '#9ca3af', fontFamily: 'monospace', letterSpacing: '0.05em' }}>Powered by</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1113.25 188.42" style={{ height: '14px', width: 'auto', opacity: 0.4 }}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1113.25 188.42"
+              style={{ height: '14px', width: 'auto', opacity: 0.4, transition: 'opacity 0.2s ease' }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '0.4')}
+            >
               <path fill="#1e1e1e" d="M920.66,0v188.42h48.75c10.41,0,18.84-8.44,18.84-18.84v-60.14h6.12v60.14c0,10.41,8.44,18.84,18.84,18.84h48.75V0h-141.31ZM994.38,78.98h-6.12v-42.15h6.12v42.15Z"/>
               <path fill="#1e1e1e" d="M288.85,134.46v-6.12h54.88c10.41,0,18.84-8.44,18.84-18.84v-30.2c0-10.41-8.44-18.84-18.84-18.84h-54.88v-6.12h54.88c10.41,0,18.84-8.44,18.84-18.84V0h-141.31v188.42h141.31v-35.12c0-10.41-8.44-18.84-18.84-18.84h-54.88Z"/>
               <path fill="#1e1e1e" d="M710.63,0h45.34C762.11,0,767.09,4.99,767.09,11.13v177.29h-67.6V11.13C699.5,4.99,704.48,0,710.63,0Z"/>
@@ -306,7 +317,7 @@ export default function Dashboard() {
               <path fill="#1e1e1e" d="M773.22,0v38.18c0,10.41,8.44,18.84,18.84,18.84h18.02v131.4h67.6V57.02h18.02c10.41,0,18.84-8.44,18.84-18.84V0h-141.31Z"/>
               <rect fill="#1e1e1e" x="1068.09" y="143.26" width="45.16" height="45.16" rx="13.78" ry="13.78"/>
             </svg>
-          </div>
+          </a>
           <span style={{ fontSize: '11px', color: '#9ca3af', fontFamily: 'monospace' }}>Auto-updates every 2 min</span>
         </div>
       </footer>
