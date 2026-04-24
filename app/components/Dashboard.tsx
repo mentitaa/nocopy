@@ -20,6 +20,17 @@ function Navbar({ countdown, onRefresh, loading }: { countdown: number; onRefres
         <a href="/" className="font-display font-bold text-xl tracking-tight text-black">
           NoCopy😉
         </a>
+        <span style={{
+          fontSize: '12px',
+          color: '#9ca3af',
+          fontFamily: 'monospace',
+          letterSpacing: '0.05em',
+          borderLeft: '1px solid #e5e7eb',
+          paddingLeft: '16px',
+          marginLeft: '8px',
+        }}>
+          Do your own research.
+        </span>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 text-gray-400 text-xs font-mono">
             <span className="live-dot" />
