@@ -358,7 +358,10 @@ export default function Dashboard() {
               <rect fill="#1e1e1e" x="1068.09" y="143.26" width="45.16" height="45.16" rx="13.78" ry="13.78"/>
             </svg>
           </a>
-          <span style={{ fontSize: '11px', color: '#9ca3af', fontFamily: 'monospace' }}>Auto-updates every 2 min</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'right' }}>
+            <span style={{ fontSize: '11px', color: '#9ca3af', fontFamily: 'monospace' }}>Data: <a href="https://polymarket.com" target="_blank" rel="noopener noreferrer" style={{ color: '#0ea5e9' }}>Polymarket</a> · Not affiliated</span>
+            <span style={{ fontSize: '11px', color: '#9ca3af', fontFamily: 'monospace' }}>© 2026 Mentita Studio. All rights reserved.</span>
+          </div>
         </div>
       </footer>
     </div>
