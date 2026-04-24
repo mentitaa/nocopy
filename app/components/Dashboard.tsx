@@ -149,19 +149,22 @@ export default function Dashboard() {
 
             {/* Right: hero image */}
             <div style={{
-              background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #7dd3fc 100%)',
-              borderRadius: '24px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               minHeight: '460px',
-              overflow: 'hidden',
               padding: '24px',
             }}>
               <img
                 src="/hero.png"
                 alt="NoCopy"
-                style={{ width: '100%', height: '100%', objectFit: 'contain', maxHeight: '420px' }}
+                style={{
+                  width: '100%',
+                  objectFit: 'contain',
+                  maxHeight: '420px',
+                  transform: 'rotate(-8deg)',
+                  filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.15))',
+                }}
               />
             </div>
           </div>
