@@ -236,40 +236,42 @@ export default function Dashboard() {
       <section className="px-6 py-24 bg-gray-50 border-t border-black/8">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            n="02 /"
+            n="03 /"
             title="METODOLOGÍA"
             sub="Cómo calculamos el ranking."
           />
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '32px' }}>
             {[
               {
                 icon: '◈',
                 title: 'Profit & Loss (P&L)',
                 body: 'Ganancia neta en USD generada por el trader en el período seleccionado, considerando posiciones cerradas y abiertas.',
-                delay: '0s',
               },
               {
                 icon: '◉',
                 title: 'ROI',
                 body: 'Retorno sobre la inversión: P&L dividido entre el capital total desplegado. Normaliza el desempeño independientemente del tamaño.',
-                delay: '0.1s',
               },
               {
                 icon: '◊',
                 title: 'Win Rate',
                 body: 'Porcentaje de mercados donde el trader obtuvo ganancia. Combinado con P&L refleja calidad de las decisiones.',
-                delay: '0.2s',
               },
             ].map((card) => (
               <div
                 key={card.title}
-                className="reveal border border-gray-100 rounded-2xl p-6 bg-white hover:border-sky-200 transition-colors"
-                style={{ transitionDelay: card.delay }}
+                style={{
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '16px',
+                  padding: '24px',
+                  background: '#fff',
+                  transition: 'border-color 0.2s',
+                }}
               >
-                <span className="text-sky-500 text-2xl block mb-4">{card.icon}</span>
-                <h3 className="font-display font-bold text-gray-900 text-lg mb-2">{card.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{card.body}</p>
+                <span style={{ fontSize: '24px', display: 'block', marginBottom: '16px' }}>{card.icon}</span>
+                <h3 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '16px', color: '#111827', marginBottom: '8px' }}>{card.title}</h3>
+                <p style={{ fontSize: '13px', color: '#6b7280', lineHeight: '1.6', margin: 0 }}>{card.body}</p>
               </div>
             ))}
           </div>
