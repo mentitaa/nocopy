@@ -4,6 +4,14 @@ export async function GET(req: NextRequest) {
   const period = req.nextUrl.searchParams.get('period') ?? '1w';
   const limit = Math.min(parseInt(req.nextUrl.searchParams.get('limit') ?? '15', 10), 50);
 
+  const validPeriods = ['1w', '1m', '3m'];
+  if (!validPeriods.includes(period)) {
+    return NextResponse.json({ error: 'Invalid period' }, { status: 400 });
+  }
+  if (isNaN(limit) || limit < 1 || limit > 50) {
+    return NextResponse.json({ error: 'Invalid limit' }, { status: 400 });
+  }
+
   const timePeriodMap: Record<string, string> = {
     '1w': 'WEEK',
     '1m': 'MONTH',
