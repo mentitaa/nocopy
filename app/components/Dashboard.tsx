@@ -294,19 +294,20 @@ export default function Dashboard() {
       {/* ── FOOTER ────────────────────────────────────────── */}
       <footer className="border-t border-gray-100 px-6 py-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-400 text-xs font-mono">
-          <span>
-            NOCOPY — Data:{' '}
-            <a
-              href="https://polymarket.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sky-500 hover:underline"
-            >
-              Polymarket
-            </a>{' '}
-            · Not affiliated
-          </span>
-          <span>Auto-updates every 2 min</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '11px', color: '#9ca3af', fontFamily: 'monospace', letterSpacing: '0.05em' }}>Powered by</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1113.25 188.42" style={{ height: '14px', width: 'auto', opacity: 0.4 }}>
+              <path fill="#1e1e1e" d="M920.66,0v188.42h48.75c10.41,0,18.84-8.44,18.84-18.84v-60.14h6.12v60.14c0,10.41,8.44,18.84,18.84,18.84h48.75V0h-141.31ZM994.38,78.98h-6.12v-42.15h6.12v42.15Z"/>
+              <path fill="#1e1e1e" d="M288.85,134.46v-6.12h54.88c10.41,0,18.84-8.44,18.84-18.84v-30.2c0-10.41-8.44-18.84-18.84-18.84h-54.88v-6.12h54.88c10.41,0,18.84-8.44,18.84-18.84V0h-141.31v188.42h141.31v-35.12c0-10.41-8.44-18.84-18.84-18.84h-54.88Z"/>
+              <path fill="#1e1e1e" d="M710.63,0h45.34C762.11,0,767.09,4.99,767.09,11.13v177.29h-67.6V11.13C699.5,4.99,704.48,0,710.63,0Z"/>
+              <path fill="#1e1e1e" d="M110.61,18.84v82.08h-6.12V18.84C104.49,8.44,96.05,0,85.64,0H0v188.42h48.77c10.41,0,18.84-8.44,18.84-18.84v-56.53h6.12v56.53c0,10.41,8.44,18.84,18.84,18.84h29.94c10.41,0,18.84-8.44,18.84-18.84v-56.53h6.12v56.53c0,10.41,8.44,18.84,18.84,18.84h48.77V0h-85.64C119.05,0,110.61,8.44,110.61,18.84Z"/>
+              <path fill="#1e1e1e" d="M478.38,18.84v57.53h-6.12V18.84C472.26,8.44,463.82,0,453.41,0h-84.73v188.42h48.75c10.41,0,18.84-8.44,18.84-18.84v-55.25h6.12v55.25c0,10.41,8.44,18.84,18.84,18.84h84.73V0h-48.75C486.82,0,478.38,8.44,478.38,18.84Z"/>
+              <path fill="#1e1e1e" d="M552.1,0v38.18c0,10.41,8.44,18.84,18.84,18.84h18.02v131.4h67.6V57.02h18.02c10.41,0,18.84-8.44,18.84-18.84V0h-141.31Z"/>
+              <path fill="#1e1e1e" d="M773.22,0v38.18c0,10.41,8.44,18.84,18.84,18.84h18.02v131.4h67.6V57.02h18.02c10.41,0,18.84-8.44,18.84-18.84V0h-141.31Z"/>
+              <rect fill="#1e1e1e" x="1068.09" y="143.26" width="45.16" height="45.16" rx="13.78" ry="13.78"/>
+            </svg>
+          </div>
+          <span style={{ fontSize: '11px', color: '#9ca3af', fontFamily: 'monospace' }}>Auto-updates every 2 min</span>
         </div>
       </footer>
     </div>
