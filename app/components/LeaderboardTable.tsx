@@ -20,10 +20,7 @@ function SkeletonRow({ i }: { i: number }) {
         </div>
       </td>
       <td className="py-4 px-3"><div className="skeleton h-4 w-20" /></td>
-      <td className="py-4 px-3 hide-sm"><div className="skeleton h-4 w-14" /></td>
-      <td className="py-4 px-3 hide-sm"><div className="skeleton h-2 w-28" /></td>
-      <td className="py-4 px-3 hide-sm"><div className="skeleton h-4 w-16" /></td>
-      <td className="py-4 px-3 pr-6 hide-sm"><div className="skeleton h-4 w-8" /></td>
+      <td className="py-4 px-3 pr-6"><div className="skeleton h-4 w-16" /></td>
     </tr>
   );
 }
@@ -49,10 +46,7 @@ export default function LeaderboardTable({
               <th className={clsx(COL, 'pl-6 pr-3 w-16')}>Rk</th>
               <th className={clsx(COL, 'px-3')}>Trader</th>
               <th className={clsx(COL, 'px-3')}>P&L</th>
-              <th className={clsx(COL, 'px-3 hide-sm')}>ROI</th>
-              <th className={clsx(COL, 'px-3 hide-sm')}>Win rate</th>
-              <th className={clsx(COL, 'px-3 hide-sm')}>Volumen</th>
-              <th className={clsx(COL, 'px-3 pr-6 hide-sm')}>Mercados</th>
+              <th className={clsx(COL, 'px-3 pr-6')}>Volumen</th>
             </tr>
           </thead>
           <tbody>

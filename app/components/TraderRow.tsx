@@ -61,36 +61,10 @@ export default function TraderRow({ trader, index }: { trader: Trader; index: nu
         )}
       </td>
 
-      {/* ROI */}
-      <td className="hide-sm" style={{ padding: '14px 12px' }}>
-        <span style={{ color: trader.roi >= 0 ? '#22c55e' : '#f87171', fontFamily: 'monospace', fontSize: '13px', fontWeight: 600 }}>
-          {fmtPct(trader.roi)}
-        </span>
-      </td>
-
-      {/* Win Rate */}
-      <td className="hide-sm" style={{ padding: '14px 12px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ width: '64px', height: '3px', background: '#e5e7eb', borderRadius: '2px', overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${Math.min(trader.winRate, 100)}%`, background: 'linear-gradient(90deg, #22c55e, #38bdf8)', transition: 'width 1s ease' }} />
-          </div>
-          <span style={{ color: '#6b7280', fontSize: '12px', fontFamily: 'monospace' }}>
-            {trader.winRate.toFixed(0)}%
-          </span>
-        </div>
-      </td>
-
       {/* Volume */}
-      <td className="hide-sm" style={{ padding: '14px 12px' }}>
+      <td style={{ padding: '14px 12px 14px 12px' }}>
         <span style={{ color: '#374151', fontFamily: 'monospace', fontSize: '13px' }}>
           {fmtUSD(trader.volume)}
-        </span>
-      </td>
-
-      {/* Markets */}
-      <td className="hide-sm" style={{ padding: '14px 12px 14px 12px' }}>
-        <span style={{ color: '#9ca3af', fontSize: '13px' }}>
-          {trader.marketsTraded}
         </span>
       </td>
     </tr>

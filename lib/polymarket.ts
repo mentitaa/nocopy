@@ -33,7 +33,7 @@ export async function fetchLeaderboard(period: Period, limit = 50): Promise<Lead
 
   const r = await fetch(url, {
     headers: { Accept: 'application/json' },
-    next: { revalidate: 120 },
+    cache: 'no-store',
   });
   if (!r.ok) throw new Error(`Polymarket API ${r.status}`);
 
@@ -46,7 +46,7 @@ export async function fetchLeaderboard(period: Period, limit = 50): Promise<Lead
       rank: parseInt(String(row.rank ?? i + 1), 10),
       address: String(row.proxyWallet ?? ''),
       username: String(row.userName ?? row.xUsername ?? `trader_${i + 1}`),
-      name: String(row.userName ?? row.xUsername ?? `Trader ${i + 1}`),
+      name: String(row.userName ?? `Trader ${i + 1}`),
       profileImage: row.profileImage ? String(row.profileImage) : undefined,
       profit: parseFloat(String(row.pnl ?? '0')),
       profitPct: 0,
