@@ -160,7 +160,7 @@ export default function Dashboard() {
       <Navbar countdown={countdown} onRefresh={() => load(period)} loading={loading} />
 
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="grid-bg flex items-center" style={{ height: 'calc(50vh - 56px)', minHeight: '320px', paddingTop: '56px' }}>
+      <section className="grid-bg flex items-center" style={{ minHeight: '380px', paddingTop: '72px', paddingBottom: '24px' }}>
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
 
@@ -235,15 +235,15 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto">
 
           {/* Section header */}
-          <div className="reveal mb-8">
+          <div style={{ marginBottom: '32px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '8px' }}>
               <span style={{ fontFamily: 'monospace', fontSize: '11px', color: '#0ea5e9', letterSpacing: '0.3em' }}>01 /</span>
               <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, #0ea5e9, transparent)' }} />
             </div>
-            <h2 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.02em', color: '#111827', lineHeight: 0.95 }}>
+            <h2 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.02em', color: '#111827', lineHeight: 0.95, margin: 0 }}>
               RANKING — {PERIOD_LABELS[period]}
             </h2>
-            <p style={{ color: '#9ca3af', fontSize: '14px', marginTop: '8px' }}>
+            <p style={{ color: '#9ca3af', fontSize: '14px', marginTop: '8px', marginBottom: 0 }}>
               Ranked by Profit &amp; Loss. Click any trader to view their full profile.
             </p>
           </div>
