@@ -160,63 +160,106 @@ export default function Dashboard() {
       <Navbar countdown={countdown} onRefresh={() => load(period)} loading={loading} />
 
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="grid-bg" style={{ paddingTop: '80px', paddingBottom: '80px', display: 'flex', alignItems: 'center' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', alignItems: 'center', maxWidth: '1280px', margin: '0 auto', padding: '0 24px', width: '100%' }}>
-
-            {/* Left: text card */}
-            <div>
-              <div ref={heroRef} className="reveal card-border mb-6" style={{ padding: '40px', alignSelf: 'center' }}>
-                <h1
-                  className="font-display font-bold text-black leading-none"
-                  style={{ fontSize: 'clamp(1.6rem, 3.5vw, 3.2rem)', letterSpacing: '-0.03em' }}
-                >
-                  NoCopy😉 →
-                </h1>
-                <h1
-                  className="font-display font-bold leading-none"
-                  style={{ fontSize: 'clamp(1.6rem, 3.5vw, 3.2rem)', letterSpacing: '-0.03em', color: '#0ea5e9' }}
-                >
-                  Best traders
-                </h1>
-                <h1
-                  className="font-display font-bold text-black leading-none"
-                  style={{ fontSize: 'clamp(1.6rem, 3.5vw, 3.2rem)', letterSpacing: '-0.03em' }}
-                >
-                  in real time.
-                </h1>
-              </div>
-
-              {/* Icon cards row */}
-              <div className="grid grid-cols-4 gap-3 reveal reveal-delay-3">
-                {[
-                  { icon: '⬡', label: 'Polymarket' },
-                  { icon: '🌐', label: 'Global' },
-                  { icon: '📊', label: 'Rankings' },
-                  { icon: '↗', label: 'Live' },
-                ].map((c) => (
-                  <div key={c.label} className="card-border p-4 flex flex-col items-center gap-2 hover:border-sky-300 transition-colors">
-                    <span className="text-2xl">{c.icon}</span>
-                    <span className="text-xs text-gray-400 font-mono">{c.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right: hero image */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img
-                src="/hero.png"
-                alt="NoCopy"
-                style={{
-                  width: '100%',
-                  objectFit: 'contain',
-                  maxHeight: '220px',
-                  transform: 'rotate(-8deg)',
-                  filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.15))',
-                }}
-              />
-            </div>
+      <section
+        className="grid-bg"
+        style={{
+          paddingTop: '56px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '420px',
+        }}
+      >
+        <div
+          className="max-w-7xl mx-auto px-6 w-full"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '32px',
+            alignItems: 'center',
+            padding: '48px 24px',
+          }}
+        >
+          {/* LEFT — text card, sized to content */}
+          <div
+            style={{
+              border: '1.5px solid rgba(0,0,0,0.08)',
+              borderRadius: '20px',
+              background: 'rgba(255,255,255,0.8)',
+              backdropFilter: 'blur(12px)',
+              padding: '40px',
+              display: 'inline-flex',
+              flexDirection: 'column',
+              gap: '0px',
+              width: 'fit-content',
+              maxWidth: '100%',
+            }}
+          >
+            <h1
+              style={{
+                fontFamily: 'Syne, sans-serif',
+                fontWeight: 800,
+                fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
+                letterSpacing: '-0.03em',
+                color: '#111827',
+                lineHeight: 1.05,
+                margin: 0,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              NoCopy😉 →
+            </h1>
+            <h1
+              style={{
+                fontFamily: 'Syne, sans-serif',
+                fontWeight: 800,
+                fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
+                letterSpacing: '-0.03em',
+                color: '#0ea5e9',
+                lineHeight: 1.05,
+                margin: 0,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Best traders
+            </h1>
+            <h1
+              style={{
+                fontFamily: 'Syne, sans-serif',
+                fontWeight: 800,
+                fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
+                letterSpacing: '-0.03em',
+                color: '#111827',
+                lineHeight: 1.05,
+                margin: 0,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              in real time.
+            </h1>
           </div>
+
+          {/* RIGHT — image */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <img
+              src="/hero.png"
+              alt="NoCopy"
+              style={{
+                width: '100%',
+                objectFit: 'contain',
+                maxHeight: '280px',
+                transform: 'rotate(-8deg)',
+                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.12))',
+              }}
+            />
+          </div>
+        </div>
       </section>
 
       {/* ── TICKER ────────────────────────────────────────── */}
