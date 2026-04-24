@@ -147,9 +147,22 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Right: 3D blob */}
-            <div className="hero-gradient rounded-3xl flex items-center justify-center p-12 min-h-[460px] reveal reveal-delay-2">
-              <div className="blob-3d" />
+            {/* Right: hero image */}
+            <div style={{
+              background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #7dd3fc 100%)',
+              borderRadius: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minHeight: '460px',
+              overflow: 'hidden',
+              padding: '24px',
+            }}>
+              <img
+                src="/hero.png"
+                alt="NoCopy"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', maxHeight: '420px' }}
+              />
             </div>
           </div>
         </div>
