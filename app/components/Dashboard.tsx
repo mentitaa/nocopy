@@ -166,7 +166,7 @@ export default function Dashboard() {
 
             {/* Left: text card */}
             <div>
-              <div ref={heroRef} className="reveal card-border p-6 mb-6">
+              <div ref={heroRef} className="reveal card-border mb-6" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', padding: '32px 40px' }}>
                 <h1
                   className="font-display font-bold text-black leading-none"
                   style={{ fontSize: 'clamp(1.6rem, 3.5vw, 3.2rem)', letterSpacing: '-0.03em' }}
@@ -233,14 +233,23 @@ export default function Dashboard() {
       {/* ── RANKING TABLE ─────────────────────────────────── */}
       <section className="px-6 py-20 bg-white border-t border-black/8">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading
-            n="01 /"
-            title={`RANKING — ${PERIOD_LABELS[period]}`}
-            sub="Ranked by Profit & Loss. Click any trader to view their full profile."
-          />
+
+          {/* Section header */}
+          <div className="reveal mb-8">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '8px' }}>
+              <span style={{ fontFamily: 'monospace', fontSize: '11px', color: '#0ea5e9', letterSpacing: '0.3em' }}>01 /</span>
+              <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, #0ea5e9, transparent)' }} />
+            </div>
+            <h2 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.02em', color: '#111827', lineHeight: 0.95 }}>
+              RANKING — {PERIOD_LABELS[period]}
+            </h2>
+            <p style={{ color: '#9ca3af', fontSize: '14px', marginTop: '8px' }}>
+              Ranked by Profit &amp; Loss. Click any trader to view their full profile.
+            </p>
+          </div>
 
           {/* Controls */}
-          <div ref={tableRef} className="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
             <PeriodTabs active={period} onChange={setPeriod} disabled={loading} />
             <div className="flex flex-col items-end gap-2">
               {updatedAt && (
@@ -259,15 +268,27 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Error */}
           {error && (
-            <div className="mb-6 px-4 py-3 rounded-xl border border-red-300/30 bg-red-50 text-red-500 text-sm font-mono">
+            <div className="mb-6 px-4 py-3 rounded-xl border border-red-200 bg-red-50 text-red-500 text-sm font-mono">
               ⚠ {error}
             </div>
           )}
 
-          <LeaderboardTable traders={traders} loading={loading} />
-          <Charts traders={traders} loading={loading} />
+          {/* TWO COLUMN LAYOUT */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: '24px', alignItems: 'start' }}>
+
+            {/* LEFT — Ranking table */}
+            <div>
+              <LeaderboardTable traders={traders} loading={loading} />
+            </div>
+
+            {/* RIGHT — Charts stacked */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <Charts traders={traders} loading={loading} />
+            </div>
+
+          </div>
+
         </div>
       </section>
 

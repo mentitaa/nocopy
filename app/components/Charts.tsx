@@ -187,19 +187,10 @@ export default function Charts({ traders, loading }: Props) {
   const maxProfit = Math.max(...traders.map(t => t.profit), 1);
 
   return (
-    <div style={{ marginTop: '48px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
-        <span style={{ fontFamily: 'monospace', fontSize: '11px', color: '#0ea5e9', letterSpacing: '0.3em' }}>02 /</span>
-        <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, #0ea5e9, transparent)' }} />
-      </div>
-      <h2 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.02em', color: '#111827', marginBottom: '24px', lineHeight: 1 }}>
-        P&L <span style={{ color: '#0ea5e9' }}>BREAKDOWN</span>
-      </h2>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', alignItems: 'start' }}>
-
-        {/* LEFT — Animated line chart */}
-        <div style={{ border: '1px solid #f1f5f9', borderRadius: '20px', padding: '24px', background: '#fff' }}>
+        {/* TOP — Animated line chart */}
+        <div style={{ border: '1px solid #f1f5f9', borderRadius: '20px', padding: '24px', background: '#fff', marginBottom: '16px' }}>
           <p style={{ fontFamily: 'monospace', fontSize: '10px', color: '#94a3b8', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '12px' }}>Top 3 — P&L Growth</p>
           <div style={{ display: 'flex', gap: '16px', marginBottom: '12px' }}>
             {top3.map((t, i) => (
@@ -219,7 +210,7 @@ export default function Charts({ traders, loading }: Props) {
           />
         </div>
 
-        {/* RIGHT — Bar chart rest of traders */}
+        {/* BOTTOM — Bar chart rest of traders */}
         <div style={{ border: '1px solid #f1f5f9', borderRadius: '20px', padding: '24px', background: '#fff' }}>
           <p style={{ fontFamily: 'monospace', fontSize: '10px', color: '#94a3b8', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '20px' }}>Positions #{top3.length + 1} — #{traders.length}</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -248,7 +239,6 @@ export default function Charts({ traders, loading }: Props) {
           </div>
         </div>
 
-      </div>
     </div>
   );
 }
