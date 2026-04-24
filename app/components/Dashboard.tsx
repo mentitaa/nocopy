@@ -17,24 +17,26 @@ function Navbar({ countdown, onRefresh, loading }: { countdown: number; onRefres
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/8 bg-white/80 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="/" className="font-display font-bold text-xl tracking-tight text-black">
-          NoCopy😉
-        </a>
-        <span style={{
-          fontSize: '12px',
-          color: '#9ca3af',
-          fontFamily: 'monospace',
-          letterSpacing: '0.05em',
-          borderLeft: '1px solid #e5e7eb',
-          paddingLeft: '16px',
-          marginLeft: '8px',
-        }}>
-          Do your own research.
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+          <a href="/" style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '20px', letterSpacing: '-0.02em', color: '#111827', textDecoration: 'none' }}>
+            NoCopy😉
+          </a>
+          <span style={{
+            fontSize: '11px',
+            color: '#9ca3af',
+            fontFamily: 'monospace',
+            letterSpacing: '0.05em',
+            borderLeft: '1px solid #e5e7eb',
+            paddingLeft: '14px',
+            marginLeft: '14px',
+          }}>
+            Do your own research.
+          </span>
+        </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 text-gray-400 text-xs font-mono">
             <span className="live-dot" />
-            <span className="hide-sm">{loading ? 'cargando…' : `refresca en ${countdown}s`}</span>
+            <span className="hide-sm">{loading ? 'cargando…' : `REFRESHES IN ${countdown}S`}</span>
           </div>
           <button onClick={onRefresh} disabled={loading}
             className="px-3 py-1.5 text-xs font-mono border border-black/15 rounded-lg text-gray-500 hover:text-sky-500 hover:border-sky-300 transition-all disabled:opacity-30">
