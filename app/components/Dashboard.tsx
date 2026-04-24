@@ -160,13 +160,12 @@ export default function Dashboard() {
       <Navbar countdown={countdown} onRefresh={() => load(period)} loading={loading} />
 
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="grid-bg flex items-center" style={{ minHeight: '380px', paddingTop: '72px', paddingBottom: '24px' }}>
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+      <section className="grid-bg" style={{ paddingTop: '80px', paddingBottom: '80px', display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', alignItems: 'center', maxWidth: '1280px', margin: '0 auto', padding: '0 24px', width: '100%' }}>
 
             {/* Left: text card */}
             <div>
-              <div ref={heroRef} className="reveal card-border mb-6" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', padding: '32px 40px' }}>
+              <div ref={heroRef} className="reveal card-border mb-6" style={{ padding: '40px', alignSelf: 'center' }}>
                 <h1
                   className="font-display font-bold text-black leading-none"
                   style={{ fontSize: 'clamp(1.6rem, 3.5vw, 3.2rem)', letterSpacing: '-0.03em' }}
@@ -204,13 +203,7 @@ export default function Dashboard() {
             </div>
 
             {/* Right: hero image */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minHeight: '200px',
-              padding: '24px',
-            }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img
                 src="/hero.png"
                 alt="NoCopy"
@@ -224,7 +217,6 @@ export default function Dashboard() {
               />
             </div>
           </div>
-        </div>
       </section>
 
       {/* ── TICKER ────────────────────────────────────────── */}
