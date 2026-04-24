@@ -2,9 +2,22 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'NoCopy — Top Traders de Polymarket',
-  description:
-    'Ranking en tiempo real de los mejores traders de Polymarket. Filtra por 7 días, 1 mes y 3 meses.',
+  title: 'NoCopy😉 — Best Traders on Polymarket',
+  description: 'Real-time leaderboard of the top-performing traders on Polymarket. Ranked by P&L across 7 days, 1 month, and 3 months. The best traders leave traces.',
+  keywords: ['polymarket', 'traders', 'ranking', 'prediction markets', 'leaderboard', 'crypto', 'best traders'],
+  metadataBase: new URL('https://nocopypoly.vercel.app'),
+  openGraph: {
+    title: 'NoCopy😉 — Best Traders on Polymarket',
+    description: 'Real-time leaderboard of the top-performing traders on Polymarket. The best traders leave traces.',
+    url: 'https://nocopypoly.vercel.app',
+    siteName: 'NoCopy',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NoCopy😉 — Best Traders on Polymarket',
+    description: 'Real-time leaderboard of the top-performing traders on Polymarket.',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
