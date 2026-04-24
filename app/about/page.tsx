@@ -125,14 +125,7 @@ export default function AboutPage() {
 
         {/* Footer */}
         <div style={{ paddingTop: '32px', borderTop: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-            <span style={{ fontSize: '12px', color: '#9ca3af', fontFamily: 'monospace' }}>
-              Data: <a href="https://polymarket.com" target="_blank" rel="noopener noreferrer" style={{ color: '#0ea5e9', textDecoration: 'none' }}>Polymarket</a> · Not affiliated
-            </span>
-            <span style={{ fontSize: '12px', color: '#9ca3af', fontFamily: 'monospace' }}>
-              © 2026 Mentita Studio. All rights reserved.
-            </span>
-          </div>
+          <span style={{ fontSize: '12px', color: '#9ca3af', fontFamily: 'monospace' }}>Data: <a href="https://polymarket.com" target="_blank" rel="noopener noreferrer" style={{ color: '#0ea5e9', textDecoration: 'none' }}>Polymarket</a> · Not affiliated · © 2026 Mentita Studio. All rights reserved.</span>
           <Link href="/" style={{ fontSize: '13px', color: '#0ea5e9', textDecoration: 'none', fontFamily: 'monospace' }}>← rankings</Link>
         </div>
 
