@@ -48,6 +48,8 @@ export default function Ticker({ traders, loading }: Props) {
           willChange: 'transform',
           animationName: 'none',
         }}
+        onMouseEnter={e => (e.currentTarget.style.animationPlayState = 'paused')}
+        onMouseLeave={e => (e.currentTarget.style.animationPlayState = 'running')}
       >
         {repeated.map((t, i) => (
           <span

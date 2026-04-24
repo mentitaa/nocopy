@@ -121,11 +121,12 @@ export default function Dashboard() {
   const [limit, setLimit] = useState(15);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const load = useCallback(async (p: Period) => {
+  const load = useCallback(async (p: Period, lim?: number) => {
+    const currentLimit = lim ?? limit;
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/leaderboard?period=${p}&limit=${limit}`);
+      const res = await fetch(`/api/leaderboard?period=${p}&limit=${currentLimit}`);
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
       setTraders(data.traders ?? []);
@@ -293,10 +294,10 @@ export default function Dashboard() {
                 </span>
               )}
               <div className="flex items-center gap-1 border border-gray-200 rounded-full p-1">
-                <button onClick={() => setLimit(15)} className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all', limit === 15 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700')}>
+                <button onClick={() => { setLimit(15); load(period, 15); }} className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all', limit === 15 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700')}>
                   Top 15
                 </button>
-                <button onClick={() => setLimit(30)} className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all', limit === 30 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700')}>
+                <button onClick={() => { setLimit(30); load(period, 30); }} className={clsx('px-4 py-1.5 rounded-full text-sm font-medium transition-all', limit === 30 ? 'bg-sky-500 text-white' : 'text-gray-400 hover:text-gray-700')}>
                   Top 30
                 </button>
               </div>
