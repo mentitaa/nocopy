@@ -160,28 +160,28 @@ export default function Dashboard() {
       <Navbar countdown={countdown} onRefresh={() => load(period)} loading={loading} />
 
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="grid-bg flex items-center" style={{ height: 'calc(100vh - 56px)', paddingTop: '56px' }}>
+      <section className="grid-bg flex items-center" style={{ height: 'calc(50vh - 56px)', minHeight: '320px', paddingTop: '56px' }}>
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
 
             {/* Left: text card */}
             <div>
-              <div ref={heroRef} className="reveal card-border p-10 mb-6">
+              <div ref={heroRef} className="reveal card-border p-6 mb-6">
                 <h1
                   className="font-display font-bold text-black leading-none"
-                  style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', letterSpacing: '-0.03em' }}
+                  style={{ fontSize: 'clamp(1.6rem, 3.5vw, 3.2rem)', letterSpacing: '-0.03em' }}
                 >
                   NoCopy😉 →
                 </h1>
                 <h1
                   className="font-display font-bold leading-none"
-                  style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', letterSpacing: '-0.03em', color: '#0ea5e9' }}
+                  style={{ fontSize: 'clamp(1.6rem, 3.5vw, 3.2rem)', letterSpacing: '-0.03em', color: '#0ea5e9' }}
                 >
                   Best traders
                 </h1>
                 <h1
                   className="font-display font-bold text-black leading-none"
-                  style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', letterSpacing: '-0.03em' }}
+                  style={{ fontSize: 'clamp(1.6rem, 3.5vw, 3.2rem)', letterSpacing: '-0.03em' }}
                 >
                   in real time.
                 </h1>
@@ -208,7 +208,7 @@ export default function Dashboard() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minHeight: '460px',
+              minHeight: '200px',
               padding: '24px',
             }}>
               <img
@@ -217,7 +217,7 @@ export default function Dashboard() {
                 style={{
                   width: '100%',
                   objectFit: 'contain',
-                  maxHeight: '420px',
+                  maxHeight: '220px',
                   transform: 'rotate(-8deg)',
                   filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.15))',
                 }}
