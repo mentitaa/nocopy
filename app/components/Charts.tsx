@@ -28,7 +28,7 @@ export default function Charts({ traders, loading }: Props) {
 
     const maxProfit = Math.max(...top3.map(t => t.profit), 1);
     const DURATION = 4000;
-    const PAUSE = 1500;
+    const PAUSE = 4000;
     let startTime: number | null = null;
     let phase: 'draw' | 'pause' = 'draw';
     let pauseStart: number | null = null;
@@ -183,6 +183,9 @@ export default function Charts({ traders, loading }: Props) {
 
   if (loading || top3.length === 0) return null;
 
+  const rest = traders.slice(3);
+  const maxProfit = Math.max(...traders.map(t => t.profit), 1);
+
   return (
     <div style={{ marginTop: '48px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
@@ -190,28 +193,61 @@ export default function Charts({ traders, loading }: Props) {
         <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, #0ea5e9, transparent)' }} />
       </div>
       <h2 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.02em', color: '#111827', marginBottom: '24px', lineHeight: 1 }}>
-        P&L <span style={{ color: '#0ea5e9' }}>GROWTH</span>
+        P&L <span style={{ color: '#0ea5e9' }}>BREAKDOWN</span>
       </h2>
 
-      <div style={{ border: '1px solid #f1f5f9', borderRadius: '20px', padding: '24px', background: '#fff' }}>
-        {/* Legend */}
-        <div style={{ display: 'flex', gap: '24px', marginBottom: '16px' }}>
-          {top3.map((t, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ width: '24px', height: '3px', background: COLORS[i], borderRadius: '2px' }} />
-              <span style={{ fontSize: '12px', color: '#374151', fontFamily: 'monospace' }}>
-                {LABELS[i]} · {(t.name || t.username || '').slice(0, 14)}
-              </span>
-            </div>
-          ))}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', alignItems: 'start' }}>
+
+        {/* LEFT — Animated line chart */}
+        <div style={{ border: '1px solid #f1f5f9', borderRadius: '20px', padding: '24px', background: '#fff' }}>
+          <p style={{ fontFamily: 'monospace', fontSize: '10px', color: '#94a3b8', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '12px' }}>Top 3 — P&L Growth</p>
+          <div style={{ display: 'flex', gap: '16px', marginBottom: '12px' }}>
+            {top3.map((t, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div style={{ width: '20px', height: '2px', background: COLORS[i], borderRadius: '2px' }} />
+                <span style={{ fontSize: '11px', color: '#374151', fontFamily: 'monospace' }}>
+                  {LABELS[i]} · {(t.name || t.username || '').slice(0, 10)}
+                </span>
+              </div>
+            ))}
+          </div>
+          <canvas
+            ref={canvasRef}
+            width={800}
+            height={260}
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          />
         </div>
 
-        <canvas
-          ref={canvasRef}
-          width={900}
-          height={300}
-          style={{ width: '100%', height: 'auto', display: 'block' }}
-        />
+        {/* RIGHT — Bar chart rest of traders */}
+        <div style={{ border: '1px solid #f1f5f9', borderRadius: '20px', padding: '24px', background: '#fff' }}>
+          <p style={{ fontFamily: 'monospace', fontSize: '10px', color: '#94a3b8', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '20px' }}>Positions #{top3.length + 1} — #{traders.length}</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {rest.map(t => {
+              const pct = Math.max((t.profit / maxProfit) * 100, 3);
+              const isTop = t.rank <= 6;
+              return (
+                <div key={t.address || t.username} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ width: '28px', fontSize: '11px', color: '#94a3b8', fontFamily: 'monospace', textAlign: 'right', flexShrink: 0 }}>#{t.rank}</span>
+                  <span style={{ width: '88px', fontSize: '12px', color: '#374151', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flexShrink: 0 }}>{t.name || t.username}</span>
+                  <div style={{ flex: 1, height: '22px', background: '#f8fafc', borderRadius: '6px', overflow: 'hidden', position: 'relative', border: '1px solid #f1f5f9' }}>
+                    <div style={{
+                      position: 'absolute', left: 0, top: 0, bottom: 0,
+                      width: `${pct}%`,
+                      background: isTop ? '#0ea5e9' : '#bae6fd',
+                      borderRadius: '6px',
+                      transition: 'width 1s cubic-bezier(0.16,1,0.3,1)',
+                    }} />
+                    <span style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', fontSize: '11px', fontFamily: 'monospace', fontWeight: 600, color: '#374151', zIndex: 1 }}>
+                      +{fmtUSD(t.profit)}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </div>
   );
