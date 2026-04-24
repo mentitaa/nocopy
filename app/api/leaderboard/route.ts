@@ -1,21 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchLeaderboard, Period } from '@/lib/polymarket';
 
 export const runtime = 'edge';
 
 export async function GET(req: NextRequest) {
-  const period = (req.nextUrl.searchParams.get('period') ?? '1w') as Period;
-  const limit  = parseInt(req.nextUrl.searchParams.get('limit') ?? '50', 10);
-  try {
-    const data = await fetchLeaderboard(period, limit);
-    return NextResponse.json(data, {
-      headers: { 'Cache-Control': 'public, s-maxage=120, stale-while-revalidate=60' },
-    });
-  } catch (e) {
-    console.error(e);
-    return NextResponse.json(
-      { traders: [], updatedAt: new Date().toISOString(), error: String(e) },
-      { status: 500 },
-    );
-  }
+  const period = req.nextUrl.searchParams.get('period') ?? '1w';
+  const windowMap: Record<string, string> = { '1w': '7d', '1m': '30d', '3m': '90d' };
+  const w = windowMap[period] ?? '7d';
+
+  const r = await fetch(
+    `https://data-api.polymarket.com/v1/leaderboard?window=${w}&limit=3`,
+    { headers: { Accept: 'application/json' } }
+  );
+  const raw = await r.json();
+
+  return NextResponse.json({ raw });
 }
