@@ -8,6 +8,7 @@ import PeriodTabs from './PeriodTabs';
 import LeaderboardTable from './LeaderboardTable';
 import HeroStats from './HeroStats';
 import Ticker from './Ticker';
+import Charts from './Charts';
 
 const REFRESH = 120_000;
 
@@ -211,6 +212,7 @@ export default function Dashboard() {
           )}
 
           <LeaderboardTable traders={traders} loading={loading} />
+          <Charts traders={traders} loading={loading} />
         </div>
       </section>
 
