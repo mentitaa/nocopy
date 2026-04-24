@@ -43,7 +43,7 @@ export default function LeaderboardTable({
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-100 bg-gray-50">
-              <th className={clsx(COL, 'pl-6 pr-3 w-16')}>Rk</th>
+              <th className={clsx(COL, 'pl-6 pr-3 w-16')}>Rank</th>
               <th className={clsx(COL, 'px-3')}>Trader</th>
               <th className={clsx(COL, 'px-3')}>P&L</th>
               <th className={clsx(COL, 'px-3 pr-6')}>Volumen</th>
